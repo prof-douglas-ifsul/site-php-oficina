@@ -1,5 +1,19 @@
 <?php
 
+// funcao para concatenar HTML para elemento textarea
+function campo_textarea($nome, $identificador, $texto = "", $linhas = 4, $colunas = 20, $extras = null) {
+	$html = "<TEXTAREA name=\"$nome\" id=\"$identificador\" rows=\"$linhas\" cols=\"$colunas\"";
+	if (!is_null($extras)) {
+		$html .= " $extras";
+	}
+	$html .= ">";
+	if ($texto != "") {
+		$html .= $texto;
+	}
+	$html .= "</TEXTAREA>";
+	return $html;
+}
+
 function campo_select_fabricante($fabricantes) {
 
 	$tmp = array();
