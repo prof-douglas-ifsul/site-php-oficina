@@ -40,7 +40,7 @@ function campo_select_modelo_com_valor($modelos, $valores) {
 	$tamanho = 1;
 	$extras = "";
 	if (count($valores) > 1) {
-		$tamanho = 10;
+		$tamanho = 1;
 		$extras = "multiple";
 	}
 	
@@ -50,7 +50,7 @@ function campo_select_modelo_com_valor($modelos, $valores) {
 function campo_select($nome, $identificador, $opcoes, $opcao_vazia = true, $tamanho = 1, $valores = array(), $extras = null) {
 	/*
 	uso da funcao
-	$opcoes é uma matriz com ao menos duas colunas
+	$opcoes tem é uma matriz com ao menos duas colunas
 	[0] = value do option
 	[1] = descricacao do option
 	[2] (opcional) = grupo dos options
@@ -115,49 +115,18 @@ function campo_select($nome, $identificador, $opcoes, $opcao_vazia = true, $tama
 	return $html;
 }
 
-?>
-<!DOCTYPE HTML>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Cadastro de veículos</title>
-</head>
-<body>
-<h4>Cadastro de veículos</h4>
-<hr/>
-<form>
-<label for="placa">Placa
-<input type="text" name="placa" id="placa" maxlength="15" size="15">
-</label>
-<BR/>
 
-<label for="fabricante">Fabricante
-<?php
-echo campo_select_fabricante($fabricantes);
-?>
-</label>
-<BR/>
-<label for="modelo">Modelo
-<?php
-echo campo_select_modelo($modelos);
-?>
-</label>
-<BR/>
-<label for="id_teste1">novo select
-<?php
-//function campo_select($nome, $identificador, $opcoes, $opcao_vazia = true, $tamanho = 1, $valores = array(), $extras = null) {
+const TPL_HOME = "./home.html";
+const TPL_FORM_VEICULOS = "./formulario_veiculos.html";
 
-echo campo_select("teste1", "id_teste1", [[1, "opção 1", 100, "bla bla bla"], [2, "opção 2", 100, "ble ble"], [3, "opção 3", 200, "blu blu"]], true, 1, [2,3], "multiple");
-?>
-</label>
-<BR/>
+$template = file_get_contents(TPL_HOME);
 
-<label for="descricao">Descrição
-<input type="text" name="descricao" id="descricao" maxlength="150" size="50">
-</label>
-<HR/>
-<button type="submit">Cadastrar</button>
-<button type="reset">Cancelar</button>
-</form>
-</body>
-</html>
+$formulario = file_get_contents(TPL_FORM_VEICULOS);
+$formulario = str_replace("<!--campo_select_fabricante-->", campo_select_fabricante($fabricantes), $formulario);
+$formulario = str_replace("<!--campo_select_modelo-->", campo_select_modelo($modelos), $formulario);
+
+$template = str_replace("<!--conteudo-->", $formulario, $template);
+
+echo $template;
+
+?>
