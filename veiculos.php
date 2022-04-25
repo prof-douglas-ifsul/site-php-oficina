@@ -1,6 +1,6 @@
 <?php
 
-$fabricantes = array("Fiat", "VW", "GM", "Hyundai","Honda", "BMW", "Ford");
+$fabricantes = array("Fiat", "VW", "GM", "Hyundai","Honda");
 
 var_dump($fabricantes);
 
@@ -29,6 +29,27 @@ function campo_select_fabricante($fabricantes) {
 	return $html;
 }
 
+function campo_select_modelo($modelos) {
+	$html = "<select name=\"modelo\" id=\"modelo\">\r\n";
+	$html .= "<option>- selecione -</option>\r\n";
+	$fabricante_ant = "";
+	foreach($modelos as $modelo) {
+		if ($fabricante_ant != $modelo[0]) {
+			if ($fabricante_ant != "") {
+				$html .= "</OPTGROUP>\n";
+			}
+			$html .= "<OPTGROUP label=\"$modelo[0]\">\n";
+        }
+		$html .= "<option value=\"" . $modelo[1][0] . "\">" . $modelo[1][1] . "</option>\r\n";
+		$fabricante_ant = $modelo[0];
+	}
+	if ($fabricante_ant != "") {
+		$html .= "</OPTGROUP>\n";
+	}
+	$html .= "</select>\r\n";
+	return $html;
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-BR">
@@ -47,36 +68,14 @@ function campo_select_fabricante($fabricantes) {
 
 <label for="fabricante">Fabricante
 <?php
-
 echo campo_select_fabricante($fabricantes);
-
 ?>
 </label>
 <BR/>
 <label for="modelo">Modelo
-<select name="modelo" id="modelo">
-<option>- selecione -</option>
-<optgroup label="Fiat">
-<option value="palio">Palio</option>
-<option value="cronos">Cronos</option>
-</optgroup>
-<optgroup label="VW">
-<option value="nivus">Nivus</option>
-<option value="fusca">Fusca</option>
-</optgroup>
-<optgroup label="GM">
-<option value="cobalt">Cobalt</option>
-<option value="onix">Onix</option>
-</optgroup>
-<optgroup label="Hyundai">
-<option value="hb20">Hyundai HB20</option>
-<option value="i30">Hyundai i30</option>
-</optgroup>
-<optgroup label="Honda">
-<option value="civic">Honda Civic</option>
-<option value="fit">Honda Fit</option>
-</optgroup>
-</select>
+<?php
+echo campo_select_modelo($modelos);
+?>
 </label>
 <BR/>
 <label for="descricao">Descrição
