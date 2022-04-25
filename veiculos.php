@@ -1,6 +1,6 @@
 <?php
 
-$fabricantes = array("Ford", "VW", "GM", "Hyundai", "Honda", "BMW");
+$fabricantes = array("Fiat", "VW", "GM", "Hyundai","Honda", "BMW", "Ford");
 
 var_dump($fabricantes);
 
@@ -17,7 +17,17 @@ $modelos = [
 	,["Honda", ["fit", "Honda Fit"]]
 ];
 
-//var_dump($modelos);
+var_dump($modelos);
+
+function campo_select_fabricante($fabricantes) {
+	$html = "<select name=\"fabricante\" id=\"fabricante\">\r\n";
+	$html .= "<option>- selecione -</option>\r\n";
+	foreach($fabricantes as $fabricante) {
+		$html .= "<option value=\"" . strtolower($fabricante) . "\">$fabricante</option>\r\n";
+	}
+	$html .= "</select>\r\n";
+	return $html;
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -36,25 +46,11 @@ $modelos = [
 <BR/>
 
 <label for="fabricante">Fabricante
-<select name="fabricante" id="fabricante">
-<option>- selecione -</option>
-<option value="<?php echo strtolower($fabricantes[0]);?>"><?php echo $fabricantes[0];?></option>
 <?php
 
-echo "<option value=\"" . strtolower($fabricantes[1]) . "\">$fabricantes[1]</option>\r\n";
-$opt = "<option value='" . strtolower($fabricantes[2]). "'>$fabricantes[2]</option>\r\n";
-echo $opt;
-echo "<option value='";
-echo strtolower($fabricantes[3]);
-echo "'>$fabricantes[3]</option>\r\n";
-
-$opt = "<option value=\"#valor#\">#descricao#</option>\r\n";
-$opt = str_replace("#valor#", strtolower($fabricantes[4]), $opt);
-$opt = str_replace("#descricao#", $fabricantes[4], $opt);
-echo $opt;
+echo campo_select_fabricante($fabricantes);
 
 ?>
-</select>
 </label>
 <BR/>
 <label for="modelo">Modelo
