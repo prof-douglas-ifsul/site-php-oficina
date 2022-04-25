@@ -1,9 +1,9 @@
 <?php
 
-$placa = $_REQUEST['placa'];
-$fabricante = $_REQUEST['fabricante'];
-$modelo = $_REQUEST['modelo'];
-$descricao = $_REQUEST['descricao'];
+$placa = $_POST['placa'];
+$fabricante = $_POST['fabricante'];
+$modelo = $_POST['modelo'];
+$descricao = $_POST['descricao'];
 
 echo "Placa: $placa<BR/>";
 echo "Fabricante: $fabricante<BR/>";

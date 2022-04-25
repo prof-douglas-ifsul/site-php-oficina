@@ -1,3 +1,25 @@
+<?php
+
+$fabricantes = array("Ford", "VW", "GM", "Hyundai", "Honda", "BMW");
+
+var_dump($fabricantes);
+
+$modelos = [
+	["Fiat", ["palio", "Palio"]]
+	,["Fiat", ["cronos", "Cronos"]]
+	,["VW", ["nivus", "Nivus"]]
+	,["VW", ["fusca", "Fusca"]]
+	,["GM", ["cobalt", "Cobalt"]]
+	,["GM", ["onix", "Onix"]]
+	,["Hyundai", ["hb20", "Hyundai HB20"]]
+	,["Hyundai", ["i30", "Hyundai i30"]]
+	,["Honda", ["civic", "Honda Civic"]]
+	,["Honda", ["fit", "Honda Fit"]]
+];
+
+//var_dump($modelos);
+
+?>
 <!DOCTYPE HTML>
 <html lang="pt-BR">
 <head>
@@ -7,7 +29,7 @@
 <body>
 <h4>Cadastro de veículos</h4>
 <hr/>
-<form action="act_veiculos.php" method="POST">
+<form>
 <label for="placa">Placa
 <input type="text" name="placa" id="placa" maxlength="15" size="15">
 </label>
@@ -16,11 +38,22 @@
 <label for="fabricante">Fabricante
 <select name="fabricante" id="fabricante">
 <option>- selecione -</option>
-<option value="fiat">Fiat</option>
-<option value="vw">VW</option>
-<option value="gm">GM</option>
-<option value="hyundai">Hyundai</option>
-<option value="honda">Honda</option>
+<option value="<?php echo strtolower($fabricantes[0]);?>"><?php echo $fabricantes[0];?></option>
+<?php
+
+echo "<option value=\"" . strtolower($fabricantes[1]) . "\">$fabricantes[1]</option>\r\n";
+$opt = "<option value='" . strtolower($fabricantes[2]). "'>$fabricantes[2]</option>\r\n";
+echo $opt;
+echo "<option value='";
+echo strtolower($fabricantes[3]);
+echo "'>$fabricantes[3]</option>\r\n";
+
+$opt = "<option value=\"#valor#\">#descricao#</option>\r\n";
+$opt = str_replace("#valor#", strtolower($fabricantes[4]), $opt);
+$opt = str_replace("#descricao#", $fabricantes[4], $opt);
+echo $opt;
+
+?>
 </select>
 </label>
 <BR/>
