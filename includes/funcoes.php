@@ -14,16 +14,6 @@ function campo_textarea($nome, $identificador, $texto = "", $linhas = 4, $coluna
 	return $html;
 }
 
-function campo_select_fabricante($fabricantes) {
-
-	$tmp = array();
-	foreach($fabricantes as $fabricante) {
-		$tmp[] = [strtolower($fabricante), $fabricante];
-	}
-	
-	return campo_select("fabricante", "fabricante", $tmp, true);
-
-}
 
 function campo_select_modelo($modelos) {
 	
