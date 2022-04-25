@@ -1,5 +1,7 @@
 <?php
 
+require_once("../includes/config.php");
+
 $fabricantes = array("Fiat", "VW", "GM", "Hyundai","Honda");
 
 $modelos = [
@@ -115,9 +117,6 @@ function campo_select($nome, $identificador, $opcoes, $opcao_vazia = true, $tama
 	return $html;
 }
 
-
-const TPL_HOME = "./home.html";
-const TPL_FORM_VEICULOS = "./formulario_veiculos.html";
 
 $template = file_get_contents(TPL_HOME);
 
