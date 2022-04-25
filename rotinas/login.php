@@ -1,5 +1,9 @@
 <?php
 
+if (count($_POST) == 0) {
+	die("Acesso não permitido");
+}
+
 require_once("../includes/config.php");
 require_once("../includes/bd.php");
 require_once("../includes/usuarios.php");
@@ -17,7 +21,7 @@ $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 
 // operador === verifica valor e tipo 
 // no caso é buscado saber se o filter_var falhou em algum dos parametros
-if ($email === false || $senha === false) {
+if ($email === false || $senha == "") {
 	die("Parâmetros esperados não fornecidos");
 }
 
