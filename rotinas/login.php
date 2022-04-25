@@ -24,9 +24,12 @@ if ($email === false || $senha === false) {
 // array - vazio se nao correspondem email e senha
 $usuario = bd_verifica_email_senha($email, $senha);
 
+session_start();
 if (count($usuario) > 0) {
+	$_SESSION['usuario'] = $email;
 	header("Location: inicial.php");
 } else {
+	session_destroy();
 	header("Location: autenticacao.php");
 }
 

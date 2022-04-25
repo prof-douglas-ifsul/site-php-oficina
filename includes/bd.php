@@ -1,10 +1,10 @@
 <?php 
 
 $bd_host = "localhost";
-$sgbd = "mysql";
+$sgbd = "sqlite";
 $base_de_dados = "oficina";
-$bd_usuario = "root";
-$bd_senha = "senha";
+$bd_usuario = "";
+$bd_senha = "";
 
 switch ($sgbd) {
     case "mysql":
