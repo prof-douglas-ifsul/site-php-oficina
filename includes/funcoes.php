@@ -1,5 +1,14 @@
 <?php
 
+// carga do templace basico
+function html_template($tpl_base_conteudo) {
+	$html = file_get_contents(TPL_HOME);
+	$html_base_conteudo = file_get_contents($tpl_base_conteudo);
+	$html = str_replace("<!--base_conteudo-->", $html_base_conteudo, $html);
+	return $html;
+}
+
+
 // funcao para concatenar HTML para elemento textarea
 function campo_textarea($nome, $identificador, $texto = "", $linhas = 4, $colunas = 20, $extras = null) {
 	$html = "<TEXTAREA name=\"$nome\" id=\"$identificador\" rows=\"$linhas\" cols=\"$colunas\"";

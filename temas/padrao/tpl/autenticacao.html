@@ -1,0 +1,31 @@
+<h4><!--formulario_usuario--></h4>
+<hr/>
+<form autocomplete="off" method="POST" --form_acao-- >
+<div class="campo_novo_usuario">
+<label for="id_nome">Nome</label>
+<input type="text" disabled="disabled" name="nome" id="id_nome" maxlength="250" size="30">
+<BR/>
+</div>
+<label for="id_email">E-Mail</label>
+<input type="text" name="email" id="id_email" maxlength="250" size="30">
+<BR/>
+<label for="id_senha">Senha</label>
+<input type="password" name="senha" id="id_senha" maxlength="50" size="30">
+<BR/>
+<div class="campo_novo_usuario">
+<label for="id_confsenha">Confirmação da senha</label>
+<input type="password" disabled="disabled" name="confsenha" id="id_confsenha" maxlength="50" size="30">
+<BR/>
+</div>
+<HR/>
+<button type="submit">Validar</button>
+<button type="reset">Cancelar</button>
+</form>
+<script>
+window.onload = function() {
+	// se for arquivo de cadastro, habilita campos adicionais
+	if (window.location.href.indexOf('novo_usuario.php') !== -1) {
+		configura_formulario_novo_usuario();
+	}
+}
+</script>
