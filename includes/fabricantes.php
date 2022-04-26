@@ -40,6 +40,22 @@ function bd_insert_fabricante($nome_curto, $nome) {
 
 }
 
+function bd_delete_fabricante($id) {
+	global $conn;
+
+	try {
+		$sql = "DELETE FROM fabricantes where idfabricante = :id";
+		$stmt = $conn->prepare($sql);
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+
+	} catch(PDOException $e) {
+		die( 'ERROR: ' . $e->getMessage());
+	}
+
+}
+
+
 function html_campo_select_fabricante($fabricantes) {
 
 	$tmp = array();
@@ -70,7 +86,7 @@ function html_table_fabricantes() {
 			$html .= "<TD>{$fabricante['nome_curto']}</TD>\n";
 			$html .= "<TD>{$fabricante['nome']}</TD>\n";
 			$html .= "<TD><a href=\"alterar_fabricante.php?id={$fabricante['idfabricante']}\">Alterar</a></TD>\n";
-			$html .= "<TD>Excluir</TD>\n";
+			$html .= "<TD><a href=\"act_excluir_fabricante.php?id={$fabricante['idfabricante']}\">Excluir</a></TD>\n";
 			$html .= "</TR>\n";
 		}
 		$html .= "</TABLE>\n";
