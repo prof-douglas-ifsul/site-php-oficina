@@ -1,6 +1,6 @@
 <?php
 
-const TPL_TEMA = "padrao";
+const TPL_TEMA = "acme";
 const TPL_DIR = "temas/" . TPL_TEMA;
 const TPL_HOME = "../".TPL_DIR."/tpl/home.html";
 

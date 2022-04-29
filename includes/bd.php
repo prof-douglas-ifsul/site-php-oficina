@@ -32,7 +32,7 @@ switch ($sgbd) {
         break;
     case "sqlite":
 
-		$conn = new PDO('sqlite:../../sqlite/oficina.db');
+		$conn = new PDO('sqlite:../sqlite/oficina.db');
 		// Set errormode to exceptions
 		$conn->setAttribute(PDO::ATTR_ERRMODE, 
 									PDO::ERRMODE_EXCEPTION);
